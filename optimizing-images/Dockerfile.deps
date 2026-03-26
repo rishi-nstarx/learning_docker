@@ -1,0 +1,12 @@
+# This image is optimised in the term of dependencies.
+# As we are installing the dependencies inside the conatiner only related to production not for development.
+FROM node:22-alpine
+
+WORKDIR /app
+COPY package*.json . 
+
+RUN npm ci --only=production
+
+COPY index.js index.js
+
+CMD ["node", "index.js"]
